@@ -28,6 +28,16 @@ public class EnemySpawner : MonoBehaviour
             // Initialize direction and timer
             directions[i] = GetRandomDirection();
             directionChangeTimers[i] = directionChangeInterval;
+
+            // Ensure the enemy has a Rigidbody component
+            Rigidbody rb = enemies[i].GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = enemies[i].AddComponent<Rigidbody>();
+            }
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            rb.constraints = RigidbodyConstraints.FreezeRotation; // Freeze rotation to prevent tipping over
         }
     }
 
@@ -47,7 +57,13 @@ public class EnemySpawner : MonoBehaviour
                 }
 
                 // Move the enemy
-                enemies[i].transform.Translate(directions[i] * moveSpeed * Time.deltaTime, Space.World);
+                Rigidbody rb = enemies[i].GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    Vector3 move = directions[i] * moveSpeed * Time.deltaTime;
+                    move.y = rb.linearVelocity.y; // Preserve the current Y velocity (gravity)
+                    rb.linearVelocity = move;
+                }
             }
         }
     }

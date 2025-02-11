@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 288468083371705808}
   - component: {fileID: 8400578041003750793}
   - component: {fileID: 6573619209144526693}
-  - component: {fileID: 5454193895802962289}
+  - component: {fileID: 3292473288688812854}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Enemy
@@ -111,7 +111,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5454193895802962289
+--- !u!54 &3292473288688812854
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,8 +133,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0

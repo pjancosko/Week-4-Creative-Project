@@ -6,9 +6,14 @@ public class GET_Collision : MonoBehaviour
     {
         if (other.CompareTag("TriggerObject"))
         {
-            print("Trigger Entered");
+            Debug.Log("Trigger Entered");
 
-            
+            // Change the color to green
+            Renderer renderer = other.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.material.color = Color.green;
+            }
         }
     }
 
@@ -16,9 +21,8 @@ public class GET_Collision : MonoBehaviour
     {
         if (other.CompareTag("TriggerObject"))
         {
-            print("Trigger Stay");
-             // Destroy the object when the player stays the trigger
-            Destroy(other.gameObject);
+            Debug.Log("Trigger Stay");
+            // No action needed here since the object will be destroyed in OnTriggerExit
         }
     }
 
@@ -26,9 +30,10 @@ public class GET_Collision : MonoBehaviour
     {
         if (other.CompareTag("TriggerObject"))
         {
-            print("Trigger Exit");
+            Debug.Log("Trigger Exit");
 
-           
+            // Destroy the object when the player exits the trigger
+            Destroy(other.gameObject);
         }
     }
 }
