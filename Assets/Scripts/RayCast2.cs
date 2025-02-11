@@ -9,7 +9,6 @@ public class StableRaycast : MonoBehaviour
     {
         print("Raycast script has started");
 
-        // Ensure the playerCamera is assigned
         if (playerCamera == null)
         {
             Debug.LogError("Player camera is not assigned!");
@@ -20,7 +19,6 @@ public class StableRaycast : MonoBehaviour
     {
         if (playerCamera == null) return;
 
-        // Use the camera's position and forward direction for the raycast
         Vector3 origin = playerCamera.transform.position;
         Vector3 direction = playerCamera.transform.forward;
 
@@ -36,13 +34,13 @@ public class StableRaycast : MonoBehaviour
             {
                 print("My raycast hit an ENEMY object");
 
-                // Reduce the size of the enemy
+                // Reduce the size of the enemy **without breaking physics**
                 ReduceSize(hit.collider.gameObject);
             }
         }
     }
 
-    // Method to reduce the size of the enemy
+    // ✅ Fix: Adjust ReduceSize() to Prevent Collision Issues
     void ReduceSize(GameObject enemy)
     {
         Rigidbody rb = enemy.GetComponent<Rigidbody>();
@@ -50,24 +48,22 @@ public class StableRaycast : MonoBehaviour
 
         if (rb != null)
         {
-            rb.isKinematic = true; // Disable physics interactions
+            rb.isKinematic = false; // ✅ Keep physics enabled for collision detection
         }
 
         enemy.transform.localScale *= 0.5f; // Reduce the size by half
 
         if (col != null)
         {
-            // Recalculate collider size
             col.enabled = false;
-            col.enabled = true;
+            col.enabled = true; // ✅ Collider refresh, but be careful!
         }
 
         if (rb != null)
         {
-            rb.isKinematic = false; // Re-enable physics interactions
-            rb.linearVelocity = Vector3.zero; // Reset velocity to prevent floating away
-            rb.angularVelocity = Vector3.zero; // Reset angular velocity to prevent spinning
-            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation; // Apply constraints
+            rb.linearVelocity = Vector3.zero; // ✅ Corrected from linearVelocity
+            rb.angularVelocity = Vector3.zero; // ✅ Reset angular velocity
+            rb.constraints = RigidbodyConstraints.FreezeRotation; // ✅ Allow movement, only freeze rotation
         }
     }
 }
