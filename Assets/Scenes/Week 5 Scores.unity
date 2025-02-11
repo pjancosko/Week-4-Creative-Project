@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e34f7ca1bc80c34d999d41922526bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 5
   playerCamera: {fileID: 94595936}
 --- !u!20 &94595936 stripped
 Camera:
@@ -431,11 +431,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 462913874700757987, guid: 22decdc2982861d449b18f91012d1823, type: 3}
-  numberOfEnemies: 5
-  spawnRadius: 10
+  numberOfEnemies: 10
+  spawnRadius: 50
   enemyHeight: 1
-  moveSpeed: 2
-  directionChangeInterval: 3
+  moveSpeed: 5
+  directionChangeInterval: 10
 --- !u!4 &277046607
 Transform:
   m_ObjectHideFlags: 0
@@ -516,7 +516,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 71529b88994c1a341b22bc57c038674a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
