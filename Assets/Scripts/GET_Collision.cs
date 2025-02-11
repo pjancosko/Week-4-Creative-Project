@@ -4,35 +4,11 @@ public class GET_Collision : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TriggerObject"))
+        if (other.CompareTag("Coin"))
         {
-            Debug.Log("Trigger Entered");
+            Debug.Log("Coin Collected");
 
-            // Change the color to green
-            Renderer renderer = other.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.material.color = Color.green;
-            }
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("TriggerObject"))
-        {
-            Debug.Log("Trigger Stay");
-            // No action needed here since the object will be destroyed in OnTriggerExit
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("TriggerObject"))
-        {
-            Debug.Log("Trigger Exit");
-
-            // Destroy the object when the player exits the trigger
+            // Destroy the coin
             Destroy(other.gameObject);
         }
     }
